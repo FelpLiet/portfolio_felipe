@@ -1,0 +1,15 @@
+<header class="main-header">
+    <div class="logo">Logo</div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#hero" (click)="scrollToSection('hero', $event)">Home</a></li>
+        <li><a href="#about" (click)="scrollToSection('about', $event)">About</a></li>
+        <li><a href="#projects" (click)="scrollToSection('projects', $event)">Projects</a></li>
+        <li><a href="#contact" (click)="scrollToSection('contact', $event)">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- <div class="theme-toggle" (click)="toggleTheme()">
+      <span *ngIf="isDarkTheme">🌙</span>
+      <span *ngIf="!isDarkTheme">☀️</span>
+    </div> -->
+</header>

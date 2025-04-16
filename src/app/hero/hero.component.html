@@ -1,1 +1,11 @@
-<p>hero works!</p>
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Ola, eu sou Felipe!</h1>
+    <p>Web Developer & 3D Enthusiast</p>
+    <a href="#about" class="cta-button" (click)="scrollToSection('about', $event)">Learn More</a>
+  </div>
+  
+  <div class="three-container">
+    <canvas #threeCanvas></canvas>
+  </div>
+</section>
