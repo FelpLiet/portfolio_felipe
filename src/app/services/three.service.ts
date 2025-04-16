@@ -13,7 +13,22 @@ export class ThreeService {
 
   constructor() {}
 
+  checkWebGLSupport(): boolean {
+    try {
+      const canvas = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && 
+        (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    } catch (e) {
+      return false;
+    }
+  }
+  
+
   initialize(canvas: HTMLCanvasElement): void {
+    if (!this.checkWebGLSupport()) {
+      console.error('WebGL is not supported in this browser.');
+      return;
+    }
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
       75, 
@@ -34,6 +49,8 @@ export class ThreeService {
       canvas,
       antialias: true,
       alpha: true,
+      powerPreference: 'high-performance',
+      precision: 'lowp',
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -43,9 +60,25 @@ export class ThreeService {
 
   addPigeon(): void {
     const loader = new GLTFLoader();
-    console.log('Iniciando carregamento do modelo do pombo...');
-    loader.load('assets/3d/pigeons/scene.gltf', (gltf) => {
+    loader.load('/assets/3d/santacruz_v10/scene.gltf', (gltf) => {
       const pigeon = gltf.scene;
+      
+      pigeon.traverse((object) => {
+        if ((object as THREE.Mesh).isMesh) {
+          const mesh = object as THREE.Mesh;
+          
+          // Simplificar materiais
+          if (mesh.material) {
+            const material = mesh.material as THREE.Material;
+            
+          }
+          
+          // Desativar sombras se existirem
+          mesh.castShadow = false;
+          mesh.receiveShadow = false;
+        }
+      });
+
       this.scene.add(pigeon);
       const animate = () => {
         this.animationId = requestAnimationFrame(animate);
