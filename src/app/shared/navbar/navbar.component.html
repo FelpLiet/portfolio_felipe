@@ -14,4 +14,35 @@
         <span class="slider"></span>
       </label>
     </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 </header>
+
+<div class="diagonal-menu" [class.open]="isMenuOpen">
+  <div class="menu-content">
+    <nav>
+      <ul>
+        <li><a href="#hero" (click)="scrollToSection('hero', $event); toggleMenu()">Home</a></li>
+        <li><a href="#about" (click)="scrollToSection('about', $event); toggleMenu()">About</a></li>
+        <li><a href="#projects" (click)="scrollToSection('projects', $event); toggleMenu()">Projects</a></li>
+        <li><a href="#contact" (click)="scrollToSection('contact', $event); toggleMenu()">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <div class="theme-toggle mobile-toggle">
+      <label class="switch">
+        <input type="checkbox" [checked]="isDarkTheme" (change)="toggleTheme()">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay para fechar o menu -->
+<div class="menu-overlay" [class.open]="isMenuOpen" (click)="toggleMenu()"></div>
+
+<div class="overlay" [class.open]="isMenuOpen" (click)="toggleMenu()"></div>

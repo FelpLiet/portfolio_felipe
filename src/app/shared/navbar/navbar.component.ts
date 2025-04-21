@@ -11,9 +11,13 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class NavbarComponent {
   isDarkTheme = true;
-
+  isMenuOpen = false;
 
   constructor(private themeService: ThemeService) {}
+  
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
     
   ngOnInit(): void {
     this.checkFragmentAndScroll();
