@@ -1,5 +1,5 @@
 <header class="main-header">
-    <div class="logo">Logo</div>
+    <img class="logo" [src]=" isDarkTheme ? '/assets/icons/logo-light.svg' : '/assets/icons/logo.svg'" alt="logo">
     <nav class="main-nav">
       <ul>
         <li><a href="#hero" (click)="scrollToSection('hero', $event)">Home</a></li>
@@ -8,8 +8,10 @@
         <li><a href="#contact" (click)="scrollToSection('contact', $event)">Contact</a></li>
       </ul>
     </nav>
-    <!-- <div class="theme-toggle" (click)="toggleTheme()">
-      <span *ngIf="isDarkTheme">🌙</span>
-      <span *ngIf="!isDarkTheme">☀️</span>
-    </div> -->
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" [checked]="isDarkTheme" (change)="toggleTheme()">
+        <span class="slider"></span>
+      </label>
+    </div>
 </header>
