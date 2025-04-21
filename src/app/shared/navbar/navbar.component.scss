@@ -137,6 +137,8 @@
     padding: 10px;
     z-index: 1000;
     position: relative;
+    transform: translateX(0px);
+    transition: all 0.3s ease;
 
     @media (max-width: 768px) {
       display: block;
@@ -153,11 +155,11 @@
     }
 
     &.active {
-      z-index: 1000;
+      transform: translate(20px, -10px);
       span {
         background-color: var(--header-text-color);
         &:nth-child(1) {
-          transform: rotate(-45deg) translate(-5px, 6px);
+          transform: rotate(-45deg) translate(-9px, 6px);
         }
 
         &:nth-child(2) {
@@ -165,7 +167,7 @@
         }
 
         &:nth-child(3) {
-          transform: rotate(45deg) translate(-5px, -6px);
+          transform: rotate(45deg) translate(-9px, -6px);
         }
       }
     }
@@ -220,6 +222,7 @@
     }
 
     .mobile-toggle {
+      display: flex;
       align-self: flex-start;
 
       .switch {
