@@ -1,14 +1,34 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  isDarkTheme = true;
+  isMenuOpen = false;
+
+  constructor(private themeService: ThemeService) {}
+  
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+    
   ngOnInit(): void {
     this.checkFragmentAndScroll();
+
+    this.themeService.darkMode$.subscribe(isDark => {
+      this.isDarkTheme = isDark;
+    });
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleDarkMode();
   }
 
   scrollToSection(sectionId: string, event?: MouseEvent): void {
