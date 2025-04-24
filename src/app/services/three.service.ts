@@ -60,8 +60,18 @@ export class ThreeService {
 
   addPigeon(): void {
     const loader = new GLTFLoader();
-    loader.load('/assets/3d/santacruz_v10/scene.gltf', (gltf) => {
+    loader.load('/assets/3d/pigeon-animated/source/pigeon.glb', (gltf) => {
       const pigeon = gltf.scene;
+      let mixer = new THREE.AnimationMixer(pigeon);
+      const animations = gltf.animations;
+      if (animations && animations.length) {
+        for (let i = 0; i < animations.length; i++) {
+          const action = mixer.clipAction(animations[i]);
+          action.play();
+          mixer.update(1/60);
+          action.setLoop(THREE.LoopRepeat, Infinity);
+        }
+      }
       
       pigeon.traverse((object) => {
         if ((object as THREE.Mesh).isMesh) {
@@ -83,8 +93,8 @@ export class ThreeService {
       const animate = () => {
         this.animationId = requestAnimationFrame(animate);
   
-        pigeon.rotation.x += 0.01;
-        pigeon.rotation.y += 0.01;
+        // pigeon.rotation.x += 0.01;
+        // pigeon.rotation.y += 0.01;
   
         this.renderer.render(this.scene, this.camera);
       };

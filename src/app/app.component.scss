@@ -24,6 +24,7 @@
     flex-direction: column;
     padding-top: var(--header-height);
     box-sizing: border-box;
+    transition: background 1s ease-in-out;
     
     app-hero, app-about, app-projects, app-contact {
       flex: 1;
@@ -35,17 +36,18 @@
   
   #hero {
     padding-top: 0;
+    // background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
   }
 
-  #about {
-    background-color: #f9f9f9;
-  }
+  // #about {
+  //   background: linear-gradient(135deg, var(--gradient-color-1), var(--gradient-color-2));
+  // }
 
-  #projects {
-    background-color: #ffffff;
-  }
+  // #projects {
+  //   background: linear-gradient(225deg, var(--gradient-color-1), var(--gradient-color-2));
+  // }
 
-  #contact {
-    background-color: #f5f5f5;
-  }
+  // #contact {
+  //   background: linear-gradient(315deg, var(--gradient-color-1), var(--gradient-color-2));
+  // }
 }
