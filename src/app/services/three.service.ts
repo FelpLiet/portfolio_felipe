@@ -10,6 +10,8 @@ export class ThreeService {
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private animationId: number | null = null;
+  private mixers: THREE.AnimationMixer[] = [];
+  private clock: THREE.Clock = new THREE.Clock();
 
   constructor() {}
 
@@ -54,14 +56,27 @@ export class ThreeService {
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(window.devicePixelRatio);
+    // reset clock for animations
+    this.clock = new THREE.Clock();
 
     window.addEventListener('resize', () => this.onWindowResize());
   }
 
   addPigeon(): void {
     const loader = new GLTFLoader();
-    loader.load('/assets/3d/santacruz_v10/scene.gltf', (gltf) => {
+    loader.load('/assets/3d/pigeon-animated/source/pigeon.glb', (gltf) => {
       const pigeon = gltf.scene;
+      const mixer = new THREE.AnimationMixer(pigeon);
+      const animations = gltf.animations;
+      // store mixer to update in animation loop
+      this.mixers.push(mixer);
+      if (animations && animations.length) {
+        for (let i = 0; i < animations.length; i++) {
+          const action = mixer.clipAction(animations[i]);
+          action.play();
+          action.setLoop(THREE.LoopRepeat, Infinity);
+        }
+      }
       
       pigeon.traverse((object) => {
         if ((object as THREE.Mesh).isMesh) {
@@ -82,10 +97,10 @@ export class ThreeService {
       this.scene.add(pigeon);
       const animate = () => {
         this.animationId = requestAnimationFrame(animate);
-  
-        pigeon.rotation.x += 0.01;
-        pigeon.rotation.y += 0.01;
-  
+        // update all mixers for animations
+        const delta = this.clock.getDelta();
+        this.mixers.forEach(m => m.update(delta));
+        
         this.renderer.render(this.scene, this.camera);
       };
       animate();
