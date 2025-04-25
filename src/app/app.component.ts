@@ -62,25 +62,28 @@ export class AppComponent implements OnInit {
   }
   
   private updateGradientAngle(section: string): void {
-    let angle;
-    switch (section) {
-      case 'hero':
-        angle = '45deg';
-        break;
-      case 'about':
-        angle = '135deg';
-        break;
-      case 'projects':
-        angle = '225deg';
-        break;
-      case 'contact':
-        angle = '315deg';
-        break;
-      default:
-        angle = '45deg';
-    }
-    
-    // Atualiza a variável CSS
-    document.documentElement.style.setProperty('--gradient-angle', angle);
+    // Map section names to target angles (in degrees)
+    const angleMap: { [key: string]: number } = {
+      hero: 45,
+      about: 135,
+      projects: 225,
+      contact: 315
+    };
+    const root = document.documentElement;
+    const currentValue = getComputedStyle(root).getPropertyValue('--gradient-angle').trim();
+    const startAngle = parseFloat(currentValue) || 0;
+    const targetAngle = angleMap[section] ?? startAngle;
+    const duration = 1000; // ms
+    const startTime = performance.now();
+    const animateAngle = (time: number) => {
+      const elapsed = time - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const current = startAngle + (targetAngle - startAngle) * t;
+      root.style.setProperty('--gradient-angle', `${current}deg`);
+      if (t < 1) {
+        requestAnimationFrame(animateAngle);
+      }
+    };
+    requestAnimationFrame(animateAngle);
   }
 }
