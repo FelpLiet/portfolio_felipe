@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HeroComponent } from './hero/hero.component';
@@ -30,9 +30,8 @@ export class AppComponent implements OnInit {
     // Inicializa verificando qual seção está visível
     setTimeout(() => this.checkVisibleSection(), 100);
   }
-  
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
+
+  onWindowScroll = (): void => {
     this.checkVisibleSection();
   }
   

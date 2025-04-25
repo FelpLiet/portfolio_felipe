@@ -1,20 +1,20 @@
-<div class="portfolio-container">
+<div class="portfolio-container" (scroll)="onWindowScroll()">
   <app-navbar></app-navbar>
 
   <main class="content-container">
-    <section id="hero" class="section-container">
+    <section id="hero" class="section-container" [class.visible]="currentSection === 'hero'">
       <app-hero></app-hero>
     </section>
     
-    <section id="about" class="section-container">
+    <section id="about" class="section-container" [class.visible]="currentSection === 'about'">
       <app-about></app-about>
     </section>
     
-    <section id="projects" class="section-container">
+    <section id="projects" class="section-container" [class.visible]="currentSection === 'projects'">
       <app-projects></app-projects>
     </section>
     
-    <section id="contact" class="section-container">
+    <section id="contact" class="section-container" [class.visible]="currentSection === 'contact'">
       <app-contact></app-contact>
     </section>
   </main>
