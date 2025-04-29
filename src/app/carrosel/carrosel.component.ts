@@ -14,6 +14,11 @@ export class CarroselComponent implements AfterViewInit, OnInit {
   @ViewChild('carousel') carousel!: ElementRef;
   currentIndex: number = 0;
   itemWidth: number = 450;
+  // Drag/swipe state
+  private isDragging = false;
+  private dragStartX = 0;
+  private dragCurrentX = 0;
+  private readonly dragThreshold = 50; // minimum px to trigger swipe
 
   ngOnInit() {
     this.adjustItemWidth();
@@ -21,7 +26,6 @@ export class CarroselComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.updateCarousel();
-    //this.startAutoplay();
     this.adjustItemWidth();
   }
 
@@ -59,12 +63,6 @@ export class CarroselComponent implements AfterViewInit, OnInit {
     this.updateCarousel();
   }
 
-  /*startAutoplay() {
-    setInterval(() => {
-      this.scrollRight();
-    }, 8000);
-  }*/
-
   updateCarousel() {
     const carouselElement = this.carousel.nativeElement;
     const itemWidth = carouselElement.querySelector('.carousel-item').clientWidth;
@@ -86,4 +84,27 @@ export class CarroselComponent implements AfterViewInit, OnInit {
     });
   }
 
+  onDragStart(event: MouseEvent | TouchEvent): void {
+    this.isDragging = true;
+    this.dragStartX = event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+  }
+
+  onDragging(event: MouseEvent | TouchEvent): void {
+    if (!this.isDragging) return;
+    event.preventDefault();
+    this.dragCurrentX = event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+  }
+
+  onDragEnd(): void {
+    if (!this.isDragging) return;
+    const delta = this.dragCurrentX - this.dragStartX;
+    if (delta > this.dragThreshold) {
+      this.scrollLeft();
+    } else if (delta < -this.dragThreshold) {
+      this.scrollRight();
+    }
+    this.isDragging = false;
+    this.dragStartX = 0;
+    this.dragCurrentX = 0;
+  }
 }

@@ -1,5 +1,12 @@
 <section class="carrosel-container">
-    <div class="carousel" #carousel>
+    <div class="carousel" #carousel
+         (mousedown)="onDragStart($event)"
+         (touchstart)="onDragStart($event)"
+         (mousemove)="onDragging($event)"
+         (touchmove)="onDragging($event)"
+         (mouseup)="onDragEnd()"
+         (mouseleave)="onDragEnd()"
+         (touchend)="onDragEnd()">
         <div class="carousel-item" *ngFor="let project of projects" [class.active]="project === projects[currentIndex]">
             <div class="project-card" >
                 <img [src]="project.image" alt="{{ project.title }}" class="project-image">
