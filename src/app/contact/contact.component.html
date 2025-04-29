@@ -1,6 +1,23 @@
-<div class="contact-section">
-  <h2>Contact Me</h2>
-  <div class="contact-form">
-    <p>Add your contact form or info here...</p>
+<div class="contact-section" id="contact">
+  <h2>Contato</h2>
+  <div class="contact-content">
+    <form #contactForm="ngForm" #formElement (ngSubmit)="onSubmit(contactForm, formElement)" class="contact-form">
+      <input type="text" name="name" ngModel placeholder="Nome" required>
+      <input type="email" name="email" ngModel placeholder="E-mail" required>
+      <input type="text" name="subject" ngModel placeholder="Assunto">
+      <textarea name="message" ngModel placeholder="Mensagem" rows="5"></textarea>
+      <button type="submit" [disabled]="sending">Enviar</button>
+    </form>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/seu-perfil" target="_blank" aria-label="LinkedIn">
+        <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/FelpLiet" target="_blank" aria-label="GitHub">
+        <img src="assets/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="http://lattes.cnpq.br/0900164611551113" target="_blank" aria-label="Instagram">
+        <img src="assets/icons/plataforma-lattes.svg" alt="lattes">
+      </a>
+    </div>
   </div>
 </div>
