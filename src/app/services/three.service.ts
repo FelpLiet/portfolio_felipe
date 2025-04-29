@@ -38,8 +38,11 @@ export class ThreeService {
       0.1, 
       1000
     );
-    this.camera.position.z = 5;
-
+    this.camera.position.z = 7;
+    this.camera.position.y = 4;
+    this.camera.position.x = 0;
+    this.camera.lookAt(0, 0, 0);
+    // this.camera.updateProjectionMatrix();
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(ambientLight);
 
@@ -68,6 +71,9 @@ export class ThreeService {
       const pigeon = gltf.scene;
       const mixer = new THREE.AnimationMixer(pigeon);
       const animations = gltf.animations;
+      pigeon.translateZ(-4);
+      pigeon.scale.set(5, 5, 5);
+
       // store mixer to update in animation loop
       this.mixers.push(mixer);
       if (animations && animations.length) {
@@ -78,21 +84,21 @@ export class ThreeService {
         }
       }
       
-      pigeon.traverse((object) => {
-        if ((object as THREE.Mesh).isMesh) {
-          const mesh = object as THREE.Mesh;
+      // pigeon.traverse((object) => {
+      //   if ((object as THREE.Mesh).isMesh) {
+      //     const mesh = object as THREE.Mesh;
           
-          // Simplificar materiais
-          if (mesh.material) {
-            const material = mesh.material as THREE.Material;
+      //     // Simplificar materiais
+      //     if (mesh.material) {
+      //       const material = mesh.material as THREE.Material;
             
-          }
+      //     }
           
-          // Desativar sombras se existirem
-          mesh.castShadow = false;
-          mesh.receiveShadow = false;
-        }
-      });
+      //     // Desativar sombras se existirem
+      //     mesh.castShadow = false;
+      //     mesh.receiveShadow = false;
+      //   }
+      // });
 
       this.scene.add(pigeon);
       const animate = () => {

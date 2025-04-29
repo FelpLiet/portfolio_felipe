@@ -21,7 +21,7 @@
   }
   .about-content {
     background: var(--header-bg);
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -41,12 +41,11 @@
     .about-image {
       flex: 0 0 250px;
       img {
-        border: 10px solid linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
+        border: 20px solid linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
         width: 100%;
         max-width: 250px;
         height: auto;
         border-radius: 32px;
-        
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         transition: transform 0.3s ease-in-out;
       }
