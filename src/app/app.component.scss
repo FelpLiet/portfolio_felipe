@@ -8,6 +8,7 @@
   height: 100vh;
   background: linear-gradient(var(--gradient-angle), var(--gradient-color-1), var(--gradient-color-2));
   overflow-y: scroll;
+  overflow-x: hidden;
   scroll-snap-type: y mandatory;
   position: relative;
   scroll-behavior: smooth;
@@ -29,7 +30,7 @@
     flex-direction: column;
     padding-top: var(--header-height);
     box-sizing: border-box;
-    // fade-in animation when visible
+    
     &.visible {
       opacity: 1;
       transform: translateY(0);

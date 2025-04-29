@@ -14,5 +14,76 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  gap: 2rem;
   box-sizing: border-box;
 }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem;
+  transition: background 0.3s ease-in-out;
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  color: var(--header-text-color);
+  margin: 0.5rem 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.project-description {
+  font-size: 1rem;
+  color: var(--header-text-color);
+  margin-bottom: 1rem;
+  text-align: justify;
+  transition: color 0.3s ease-in-out;
+}
+
+.project-technologies {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tech-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+// @media (max-width: 768px) {
+//   .projects-section {
+//     padding: 1rem;
+//   }
+
+//   .project-card {
+//     padding: 0.5rem;
+//   }
+
+//   .project-title {
+//     font-size: 1.2rem;
+//   }
+
+//   .project-description {
+//     font-size: 0.9rem;
+//   }
+// }

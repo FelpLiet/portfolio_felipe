@@ -1,7 +1,18 @@
 <div class="projects-section">
-  <h2>My Projects</h2>
-  <div class="projects-grid">
-    <!-- Project items will go here -->
-    <p>Add your projects here...</p>
-  </div>
+  <h2>Projetos</h2>
+  <!-- <div class="projects-grid">
+    <div class="project-card" *ngFor="let project of projects">
+      <img [src]="project.image" alt="{{ project.title }}" class="project-image">
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-description">{{ project.description }}</p>
+      <div class="project-technologies">
+        <a *ngFor="let tech of project.technologies" [href]="tech.link">
+          <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+        </a>
+      </div>
+    </div>
+  </div> -->
+  <app-carrosel
+    [projects]="projects">
+  </app-carrosel>
 </div>
