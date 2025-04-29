@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CarroselComponent } from '../carrosel/carrosel.component';
 
 @Component({
   selector: 'app-projects',
@@ -7,7 +8,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./projects.component.scss'],
   imports: [
     CommonModule,
-  ],
+    CarroselComponent
+],
 })
 export class ProjectsComponent {
   projects = [

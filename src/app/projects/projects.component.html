@@ -1,6 +1,6 @@
 <div class="projects-section">
   <h2>Projetos</h2>
-  <div class="projects-grid">
+  <!-- <div class="projects-grid">
     <div class="project-card" *ngFor="let project of projects">
       <img [src]="project.image" alt="{{ project.title }}" class="project-image">
       <h3 class="project-title">{{ project.title }}</h3>
@@ -11,5 +11,8 @@
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
+  <app-carrosel
+    [projects]="projects">
+  </app-carrosel>
 </div>
