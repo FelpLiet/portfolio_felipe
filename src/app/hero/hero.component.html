@@ -1,11 +1,25 @@
 <section class="hero-section">
-  <div class="hero-content">
-    <h1>Ola, eu sou Felipe!</h1>
-    <p>Web Developer & 3D Enthusiast</p>
-    <a href="#about" class="cta-button" (click)="scrollToSection('about', $event)">Learn More</a>
+  <div class="hero-layout">
+    <div class="photo-column">
+      <div class="photo-stack">
+        <div class="photo-frame">
+          <div class="three-container" aria-hidden="true">
+            <canvas #threeCanvas></canvas>
+          </div>
+
+          <img src="assets/fotos/felipe.png" alt="Foto de Felipe" />
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h1>Ola, bem vindo!</h1>
+      <p>Sou Felipe, um entusiasta de tecnologia com foco em desenvolvimento web e solucoes inovadoras.</p>
+      <a href="#about" class="cta-button" (click)="scrollToSection('about', $event)">Saiba mais</a>
+    </div>
   </div>
-  
-  <div class="three-container">
-    <canvas #threeCanvas></canvas>
-  </div>
+
+  <a href="#about" class="scroll-indicator" aria-label="Ir para secao sobre" (click)="scrollToSection('about', $event)">
+    <span></span>
+  </a>
 </section>

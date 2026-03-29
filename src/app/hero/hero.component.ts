@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThreeService } from '../services/three.service';
 
@@ -9,20 +9,20 @@ import { ThreeService } from '../services/three.service';
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })
-export class HeroComponent implements OnInit, AfterViewInit {
+export class HeroComponent implements AfterViewInit, OnDestroy {
   @ViewChild('threeCanvas') private canvasRef!: ElementRef<HTMLCanvasElement>;
   
   constructor(private threeService: ThreeService) {}
   
-  ngOnInit(): void {
-    // Initialize component logic
-  }
-  
   ngAfterViewInit(): void {
     if (this.canvasRef) {
       this.threeService.initialize(this.canvasRef.nativeElement);
-      this.threeService.addPigeon();
+      this.threeService.buildHeroScene();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.threeService.dispose();
   }
 
   scrollToSection(sectionId: string, event: MouseEvent): void {
